@@ -24,8 +24,6 @@ export async function getPriceHtml(): Promise<string> {
 
 //get page by slug
 export async function getPageHtml(slug: string): Promise<Page> {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-
   const data = await graphqlFetch<any>(
     GET_PAGE_HTML,
     { slug },

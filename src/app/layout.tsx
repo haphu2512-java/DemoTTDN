@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import FloatingWidgets from "@/components/layout/FloatingWidgets";
+import InitPlugins from "@/components/layout/InitPlugins";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/assets/css/animate.min.css";
 import "@/assets/css/boxicons.min.css";
@@ -9,11 +11,12 @@ import "@/assets/css/flaticon.css";
 import "@/assets/css/meanmenu.min.css";
 import "@/assets/css/nice-select.min.css";
 import "@/assets/css/magnific-popup.min.css";
-// import "@/assets/css/odometer.min.css";
+import "@/assets/css/odometer.min.css";
 import "@/assets/css/style.css";
 import "@/assets/css/responsive_theme.css";
 import "@/assets/css/custom.css";
 import "@/assets/css/responsive.css";
+import "@/assets/css/aio_ct_button.css";
 import Script from "next/script";
 import { Suspense } from "react";
 import Test from "@/components/layout/test";
@@ -44,6 +47,10 @@ export default function RootLayout({
         />
         <link
           rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        />
+        <link
+          rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         />
         <link
@@ -56,6 +63,8 @@ export default function RootLayout({
         {/* <Test /> */}
         <Suspense fallback={<p>Loading posts...</p>}>{children}</Suspense>
         <Footer />
+        <FloatingWidgets />
+        <InitPlugins />
         {/* 1. jQuery */}
         <Script
           src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -85,6 +94,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         <Script src="/assets/js/custom.js" strategy="afterInteractive" />
+        <Script src="/assets/js/aio_ct_button.js" strategy="afterInteractive" />
 
         {/* 3. Plugin CDN */}
         <Script

@@ -1,35 +1,49 @@
-/* Fix navbar display - add background to make it visible */
-.navbar-area {
-  background-color: var(--whiteColor) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  position: relative !important;
-  top: auto !important;
+.owl-carousel:not(.owl-loaded) {
+  display: block !important;
 }
 
-.navbar-area.navbar-color-white {
-  background-color: var(--whiteColor) !important;
+.owl-carousel:not(.owl-loaded) > *:not(:first-child) {
+  display: none !important;
 }
 
-.dibiz-nav .navbar .navbar-nav .nav-item a {
-  color: var(--blackColor) !important;
+.single-testimonials-item .client-info img,
+.single-feedback-item .client-info img,
+.testimonials-slides .client-info img,
+.feedback-slides .client-info img,
+.owl-carousel .client-info img {
+  width: 60px !important;
+  height: 60px !important;
+  max-width: 60px !important;
+  min-width: 60px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  display: inline-block !important;
+  margin-right: 15px !important;
+  flex-shrink: 0 !important;
 }
 
-.dibiz-nav .navbar .navbar-nav .nav-item a:hover,
-.dibiz-nav .navbar .navbar-nav .nav-item a:focus,
-.dibiz-nav .navbar .navbar-nav .nav-item a.active {
-  color: var(--mainColor) !important;
+.single-testimonials-item .client-info .d-flex {
+  display: flex !important;
+  align-items: center !important;
 }
 
-/* Ensure nav items are visible */
-.others-option .search-box,
-.side-menu-btn {
-  color: var(--blackColor) !important;
-  cursor: pointer;
+.elementor .elementor-invisible,
+.elementor-invisible {
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
-.others-option .search-box i:hover,
-.side-menu-btn a:hover {
-  color: var(--mainColor) !important;
+.elementor-page-7550 {
+  background-color: #fff;
+  width: 100%;
+}
+
+/* Active menu item color matching tbay.vn */
+.dibiz-nav .navbar .navbar-nav .nav-item.active > a,
+.dibiz-nav .navbar .navbar-nav .nav-item > a.active,
+.navbar-color-white .dibiz-nav .navbar .navbar-nav .nav-item.active > a,
+.navbar-color-white .dibiz-nav .navbar .navbar-nav .nav-item > a.active {
+  color: #fe4c1c !important;
 }
 
 .mb-50{ margin-bottom:50px; }

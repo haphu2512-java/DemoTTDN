@@ -12,6 +12,8 @@ function extractFooter(html: string) {
   return footer.length ? footer.prop("outerHTML") || html : html;
 }
 
+import FooterView from "./FooterView";
+
 export default async function Footer() {
   "use cache";
   const footerHtml = await getFooter();
@@ -20,11 +22,5 @@ export default async function Footer() {
 
   const content = extractFooter(footerHtml);
 
-  return (
-    <div
-      dangerouslySetInnerHTML={{
-        __html: transformHtml(content),
-      }}
-    />
-  );
+  return <FooterView contentHtml={transformHtml(content)} />;
 }

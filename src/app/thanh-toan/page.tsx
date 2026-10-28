@@ -7,7 +7,11 @@ import { transformHtml } from "@/libs/helper/urlProxy";
 function extractContent(html: string) {
   if (!html) return "";
   const $ = cheerio.load(html);
-  return $("#page-checkout-content").html() || html;
+  $("script").remove();
+  $(".hotline").remove();
+  $(".aio-fixed-bt-mb").remove();
+  $(".zalo-chat-widget").remove();
+  return $("main").html() || html;
 }
 
 export default async function CheckoutPage() {
@@ -19,14 +23,13 @@ export default async function CheckoutPage() {
   const content = extractContent(page.fullHtml);
 
   return (
-    <div>
-      <TitlePageSection title={page.title} />
-
+    <main>
       <div
+        suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: transformHtml(content),
         }}
       />
-    </div>
+    </main>
   );
 }

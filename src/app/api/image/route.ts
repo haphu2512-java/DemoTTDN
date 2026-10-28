@@ -1,15 +1,20 @@
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
 
-  const path = searchParams.get("path");
+  let path = searchParams.get("path");
 
   if (!path) {
     return new Response("Missing path", { status: 400 });
   }
 
-  const url = process.env.NEXT_PUBLIC_MEDIA_ENDPOINT;
+  path = path.replace(/^\/+/, "");
 
-  const imageUrl = url + path;
+  const base = (
+    process.env.NEXT_PUBLIC_MEDIA_ENDPOINT ||
+    "https://tbay.vn/wp-content/uploads/"
+  ).replace(/\/+$/, "");
+
+  const imageUrl = `${base}/${path}`;
 
   return fetch(imageUrl);
 }

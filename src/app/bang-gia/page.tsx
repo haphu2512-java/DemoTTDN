@@ -3,27 +3,32 @@ import { TitlePageSection } from "@/components/shared/TitlePageSection";
 import { getPageHtml } from "@/libs/api/services/layout.service";
 import { transformHtml } from "@/libs/helper/urlProxy";
 
-function extractAboutContent(html: string) {
+function extractContent(html: string) {
   if (!html) return "";
   const $ = cheerio.load(html);
-  return $("#page-pricing-content").prop("outerHTML") || "";
+  $("script").remove();
+  $(".hotline").remove();
+  $(".aio-fixed-bt-mb").remove();
+  $(".zalo-chat-widget").remove();
+  return $("main").html() || html;
 }
 
 export default async function Page() {
   "use cache";
 
   const page = await getPageHtml("bang-gia");
-  const aboutContent = extractAboutContent(page.fullHtml);
+  if (!page) return null;
+
+  const content = extractContent(page.fullHtml);
 
   return (
-    <div>
-      <TitlePageSection title={page.title} />
-
+    <main>
       <div
+        suppressHydrationWarning
         dangerouslySetInnerHTML={{
-          __html: transformHtml(aboutContent),
+          __html: transformHtml(content),
         }}
       />
-    </div>
+    </main>
   );
 }
