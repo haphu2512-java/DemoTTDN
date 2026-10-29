@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import { getFooter } from "@/libs/api/services/layout.service";
 import * as cheerio from "cheerio";
 import { transformHtml } from "@/libs/helper/urlProxy";
+import FooterView from "./FooterView";
 
 function extractFooter(html: string) {
   if (!html) return "";
@@ -12,8 +14,6 @@ function extractFooter(html: string) {
   return footer.length ? footer.prop("outerHTML") || html : html;
 }
 
-import FooterView from "./FooterView";
-
 export default async function Footer() {
   "use cache";
   const footerHtml = await getFooter();
@@ -22,5 +22,9 @@ export default async function Footer() {
 
   const content = extractFooter(footerHtml);
 
-  return <FooterView contentHtml={transformHtml(content)} />;
+  return (
+    <Suspense fallback={null}>
+      <FooterView contentHtml={transformHtml(content)} />
+    </Suspense>
+  );
 }

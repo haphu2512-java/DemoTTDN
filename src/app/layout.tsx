@@ -64,7 +64,7 @@ export default function RootLayout({
         <Suspense fallback={<p>Loading posts...</p>}>{children}</Suspense>
         <Footer />
         <FloatingWidgets />
-        <InitPlugins />
+        <Suspense fallback={null}><InitPlugins /></Suspense>
         {/* 1. jQuery */}
         <Script
           src="https://code.jquery.com/jquery-3.6.0.min.js"

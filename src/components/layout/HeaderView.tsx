@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { toImageProxy } from "@/libs/helper/urlProxy";
 
-interface MenuItem {
+export interface MenuItem {
   id: string;
   parentId: string | null;
   label: string;
